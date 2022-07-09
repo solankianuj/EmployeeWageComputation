@@ -5,7 +5,7 @@ public class EmployeeWage {
 	private final int Emp_Rate_Per_Hour ;
 	private final int Num_Of_Working_Days;
 	private final int Max_Working_Hrs_Per_Month;
-	private static int totalEmpWage;
+	private  int totalEmpWage;
 	
 	
 	
@@ -42,22 +42,22 @@ public class EmployeeWage {
 		totalEmpHrs +=empHrs;
 		
 		}
-		System.out.println("Employe Total working Days Of Month Is :" +totalWorkingDays);
-
-		System.out.println("Employe Total working Hours Of Month Is :" +totalEmpHrs);
-		
-		System.out.println( company+" Employes Total Wage Is :"+totalEmpWage);
-		
-		
 	}
 	
+
+	@Override
+	public String toString() {
+		return "EmployeeWage Total Wage For " +company+" is : " + totalEmpWage ;
+	}
 
 	public static void main(String[] args) {
 		EmployeeWage relaince=new EmployeeWage("Relaince Industry", 20, 2, 10);
 		EmployeeWage adaniGroup=new EmployeeWage("Adani Group", 10, 4, 20);
 		relaince.computeWage();
-		System.out.println();
+		System.out.println(relaince);
 		adaniGroup.computeWage();
+		System.out.println(adaniGroup);
+
 		
 	}
 }
