@@ -1,11 +1,26 @@
 
 public class EmployeeWage {
-	public static final int Is_Full_Time=1,Is_Part_Time=2,Emp_Rate_Per_Hour=20,Num_Of_Working_Days=20,Max_Working_Hrs=100;
+	public static final int Is_Full_Time=1,Is_Part_Time=2;
+	private String company ;
+	private final int Emp_Rate_Per_Hour ;
+	private final int Num_Of_Working_Days;
+	private final int Max_Working_Hrs_Per_Month;
+	private static int totalEmpWage;
 	
-	public static void computeWage() {
-		int empHrs=0, empWage=0,totalEmpWage=0,totalWorkingDays=0,totalEmpHrs=0;
+	
+	
+	public EmployeeWage(String company, int emp_Rate_Per_Hour, int num_Of_Working_Days, int max_Working_Hrs_Per_Month) {
+	
+		this.company = company;
+		this.Emp_Rate_Per_Hour = emp_Rate_Per_Hour;
+		this.Num_Of_Working_Days = num_Of_Working_Days;
+		this.Max_Working_Hrs_Per_Month = max_Working_Hrs_Per_Month;
+	}
+
+	public void computeWage() {
+		int empHrs=0, empWage=0,totalWorkingDays=0,totalEmpHrs=0;
 		
-		while(totalEmpHrs<=Max_Working_Hrs && totalWorkingDays<Num_Of_Working_Days) {
+		while(totalEmpHrs<=Max_Working_Hrs_Per_Month && totalWorkingDays<Num_Of_Working_Days) {
 			totalWorkingDays++;
 		int empCheck=(int) (Math.floor(Math.random()*10)%3);
 		switch(empCheck)
@@ -27,13 +42,22 @@ public class EmployeeWage {
 		totalEmpHrs +=empHrs;
 		
 		}
-	
-		System.out.println("Employee Total Wage Of Month Is : "+totalEmpWage);
+		System.out.println("Employe Total working Days Of Month Is :" +totalWorkingDays);
+
+		System.out.println("Employe Total working Hours Of Month Is :" +totalEmpHrs);
+		
+		System.out.println( company+" Employes Total Wage Is :"+totalEmpWage);
+		
 		
 	}
 	
+
 	public static void main(String[] args) {
-		computeWage();
+		EmployeeWage relaince=new EmployeeWage("Relaince Industry", 20, 2, 10);
+		EmployeeWage adaniGroup=new EmployeeWage("Adani Group", 10, 4, 20);
+		relaince.computeWage();
+		System.out.println();
+		adaniGroup.computeWage();
 		
 	}
 }
