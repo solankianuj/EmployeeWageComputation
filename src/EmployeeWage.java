@@ -11,20 +11,34 @@ public class EmployeeWage implements IEmpWage{
 	}
 	
 
+	public ArrayList<CompanyEmpWage> getListOfCompanies() {
+		return listOfCompanies;
+	}
+
+
+	public void setListOfCompanies(ArrayList<CompanyEmpWage> listOfCompanies) {
+		this.listOfCompanies = listOfCompanies;
+	}
+
+
 	@Override
 	public void addCompanyEmpWage(String company, int emp_Rate_Per_Hour, int num_Of_Working_Days,
 			int max_Working_Hrs_Per_Month) {
-		CompanyEmpWage companyEmpWage=new CompanyEmpWage(company, emp_Rate_Per_Hour, num_Of_Working_Days, max_Working_Hrs_Per_Month, max_Working_Hrs_Per_Month);
+		CompanyEmpWage companyEmpWage=new CompanyEmpWage(company, emp_Rate_Per_Hour, num_Of_Working_Days, max_Working_Hrs_Per_Month);
 		listOfCompanies.add(companyEmpWage);
 		NumOfCompany++;
 		}
 
 
 	@Override
-	public void computeEmpWage() {
+	public void computeEmpWage(String company) {
+		
 		for (int i=0; i< NumOfCompany;i++) {
-			computeWage(listOfCompanies.get(i));	
+			if(company==listOfCompanies.get(i).getCompany()) {
+			computeWage(listOfCompanies.get(i));
 			System.out.println(listOfCompanies);
+			return;
+			}
 		}		
 	}
 
@@ -50,18 +64,17 @@ public class EmployeeWage implements IEmpWage{
 		}
 		
 		empWage= empHrs * companyEmpWage.Emp_Rate_Per_Hour;
-		companyEmpWage.totalEmpWage +=empWage;
 		totalEmpHrs +=empHrs;
-		System.out.println(companyEmpWage.company+" Employee Daily Wage Is : " +empWage);
+		companyEmpWage.totalEmpWage=totalEmpHrs*companyEmpWage.Emp_Rate_Per_Hour;
 		}
-		return companyEmpWage.totalEmpWage +=empWage;
+		return companyEmpWage.totalEmpWage ;
 	}
 	
 	public static void main(String[] args) {
 		EmployeeWage wage=new EmployeeWage();
-		wage.addCompanyEmpWage("Relaince Industry", 10, 4, 20);
-		wage.addCompanyEmpWage("Adani Group", 20, 2, 10);
-		wage.computeEmpWage();	
+		wage.addCompanyEmpWage("Relaince Industry", 10, 4, 32);
+		wage.addCompanyEmpWage("Adani Group", 20, 2, 16);
+		wage.computeEmpWage("Adani Group");
 		
 	}
 	
