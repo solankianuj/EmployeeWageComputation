@@ -52,9 +52,9 @@ public class EmployeeWage implements IEmpWage{
 		empWage= empHrs * companyEmpWage.Emp_Rate_Per_Hour;
 		companyEmpWage.totalEmpWage +=empWage;
 		totalEmpHrs +=empHrs;
-		
+		System.out.println(companyEmpWage.company+" Employee Daily Wage Is : " +empWage);
 		}
-		return empWage;
+		return companyEmpWage.totalEmpWage +=empWage;
 	}
 	
 	public static void main(String[] args) {
@@ -62,6 +62,7 @@ public class EmployeeWage implements IEmpWage{
 		wage.addCompanyEmpWage("Relaince Industry", 10, 4, 20);
 		wage.addCompanyEmpWage("Adani Group", 20, 2, 10);
 		wage.computeEmpWage();	
+		
 	}
 	
 }
